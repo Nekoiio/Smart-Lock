@@ -4,6 +4,7 @@ node_modules/
 # Build output
 dist/
 build/
+Backend/dist/
 
 # Environment variables / secrets
 .env
@@ -26,8 +27,8 @@ Setup
 Thumbs.db
 
 # Vite
-frontend/dist/
-frontend/.vite/
+Frontend/dist/
+Frontend/.vite/
 
 # Personals
 Exploit/
