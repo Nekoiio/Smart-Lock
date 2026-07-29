@@ -1,29 +1,55 @@
 import { useState, useEffect } from 'react'
-import './App.css'
+import Dashboard from './components/Dashboard';
+import {createDevice} from './api/devices';
 
-function App() {
 
-  const [message, setMessage] = useState<string | null>(null);
+
+
+function App() { // Runs when page starts
+
+  const [devices, setDevices] = useState<any[]>([]);
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await fetch("http://localhost:3000/api/hello");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/hello`);
 
       if (!response.ok) {
         throw new Error (`Eror: ${response.status}`);
       }
 
       const data = await response.json();
-      setMessage(data.message);
+      setDevices(data.devices);
     }
     loadData();
 
   }, []);
-  console.log(`message captured: ${message}`)
+
+  
+  const handleCreateDevice = async (data: { name: string; status: string; localIp: string }) => {
+    try {
+      const result = await createDevice(data);
+      setDevices([...devices, result.device])
+    } catch (error) {
+      console.log(`Error creating device: ${error}`);
+    }
+  };
+
+
   return (
-    <div>
-      <h1>{message}</h1>
-    </div>
+    <Dashboard
+      devices={devices}
+      loading={false}
+      onUnlock={(id) => {
+        console.log('unlock', id);
+      }}
+      onDelete={(id) => {
+        console.log('delete', id);
+      }}
+      onCreateDevice={(data) => {
+        handleCreateDevice(data)
+        console.log('create', data);
+      }}
+    />
   )
 
 }
