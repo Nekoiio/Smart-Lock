@@ -39,7 +39,7 @@ The goal is to demonstrate the full skill stack an IoT security engineer actuall
 
 **Hardware / Firmware (in progress)**
 - ESP32-based lock controller with servo-driven physical actuation
-- Reuses and integrates a custom **MFRC522 RFID reader library** ([link to that repo]) — a from-scratch hardware abstraction layer (HAL) built for SPI-based communication with the MFRC522 module, enabling RFID-based physical authentication on the device itself
+- Reuses and integrates a custom made **MFRC522 RFID reader library** by Guillermo [Neko-MFRC5222-RFID](https://github.com/Nekoiio/Neko-MFRC5222-RFID) — a from-scratch hardware abstraction layer (HAL) built for SPI-based communication with the MFRC522 module, enabling RFID-based physical authentication on the device itself
 
 ## Planned — the vulnerability chain
 
